@@ -34,21 +34,25 @@ Segmentation::~Segmentation(){}
  */
 void Segmentation::read(){
     std::ifstream input(file); 
-    
+
     if (!input) {
-        std::cout << "ERRO: Cannot read this file: " << file << "\n";
+        std::cout << "ERRO: Cannot read the file: " << file << "\n";
     } else {
         input >> format >> width >> height >> rgbMax;
+
+        std::vector <int> line;
 
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 int r, g, b;
                 input >> r >> g >> b;
-                std::cout << r << " ";
+                line.push_back(r);
             }
-            std::cout << "\n";
+            img.push_back(line);
+            line.clear();
         }
     }
+
     input.close();
 }
 
@@ -57,6 +61,23 @@ void Segmentation::read(){
  * 
  */
 void Segmentation::write(){
-    
+    std::ofstream output("imgs/nova-img.ppm");
+    if (!output) {
+        std::cout << "ERRO: Cannot create new file: imgs/nova-img.ppm.\n";
+    } else {
+        output << format << "\n" << width << " " << height << "\n" << rgbMax << "\n";
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                output << img[i][j] << " " << img[i][j] << " " << img[i][j];
+                if (j == width-1) {
+                    output << "\n";
+                } else {
+                    output << " ";
+                }
+            }
+        }
+        std::cout << "Imagem salva como: 'nova-img.ppm' em 'imgs'.\n";
+        output.close();
+    } 
 }
 

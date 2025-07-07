@@ -21,10 +21,10 @@ private:
     std::string file;                      /*!< Path da imagem*/
     std::string algorithm;                 /*!< Operação a ser realizada na imagem */
     std::string format;                    /*!< Formato da imagem (ex.: P3 para PPM) */
-    int rgbMax;                            /*!< Valor máximo para os componentes RGB */
+    std::string rgbMax;                            /*!< Valor máximo para os componentes RGB */
     int height;                            /*!< Altura da imagem */
     int width;                             /*!< Largura da imagem */
-    //std::vector<std::vector<int>> img;     /*!< Matriz que armazena a imagem original */
+    std::vector<std::vector<int>> img;     /*!< Matriz que armazena a imagem original */
     std::vector<std::vector<int>> newImg;  /*!< Matriz que armazena a imagem modificada */
     
 public:
